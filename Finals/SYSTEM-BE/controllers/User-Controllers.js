@@ -76,21 +76,20 @@ module.exports.checkEmail = (req, res) => {
 
 // Get user profile
 module.exports.getProfile = (req, res) => {
-    let {_id} = req.body;
-
-    return User.findOne({_id: _id}).then(result => {
-        if (result == null) {
+    const {id} = req.user;
+    return User.findById(id).then(result => {
+        if(result == null || result.length === 0){
             return res.send({
                 code: "USER-NOT-FOUND",
                 message: "Cannot find user with the provided ID."
-            });
-        } else {
-            result.password = "******";
-
+            })
+        }else{
+            result.password = "*****";
             return res.send({
                 code: "USER-FOUND",
+                message: "A user was found.",
                 result: result
-            });
+            })
         }
     })
 }

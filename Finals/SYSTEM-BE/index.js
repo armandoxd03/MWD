@@ -16,7 +16,7 @@ const corsOptions = {
     credentials: true,
     optionSuccessStatus: 200
 }
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); 
 
 const userRoutes= require("./routes/User-Routes.js");
 const courseRoutes= require("./routes/Course-Routes.js");
